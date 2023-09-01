@@ -43,8 +43,11 @@ public class TicTacToeGame {
      * @param c the column where the move is being made.
      */
     public void playMove( char p, int r, int c ) {
-        // TODO: implement me. Replace the line below with your implementation of the method.
-        throw new UnsupportedOperationException("isWinner is not implemented");
+        if(playerAt(r,c) == ' ')
+        {
+            board[r][c] = p;
+            turns++;
+        }
     } // playMove
 
     /**
@@ -56,8 +59,37 @@ public class TicTacToeGame {
      * @param p the character to check.
      */
     public boolean isWinner( char p ) {
-        // TODO: implement me. Replace the line below with your implementation of the method.
-        throw new UnsupportedOperationException("isWinner is not implemented");
+        for(int r = 0; r < 3; r++)
+        {
+            int counter = 0;
+            for(int c = 0; c < 3; c++)
+            {
+                if(board[r][c]==p)
+                {
+                    counter++;
+                }
+                if(counter == 3)
+                {
+                    return true;
+                }
+            }
+        }
+         for(int c = 0; c < 3; c++)
+        {
+            int counter = 0;
+            for(int r = 0; r < 3; r++)
+            {
+                if(board[r][c]==p)
+                {
+                    counter++;
+                }
+                if(counter == 3)
+                {
+                    return true;
+                }
+            }
+        }
+        return ((board[0][0] == p && board[1][1] == p && board[2][2] == p) || (board[2][0] == p && board[1][1] == p && board[0][2] == p));
     } // isWinner
 
     /**
@@ -66,8 +98,7 @@ public class TicTacToeGame {
      * @return {@code true} if the board is full and {@code false} otherwise.
      */
     public boolean isFull() {
-        // TODO: implement me. Replace the line below with your implementation of the method.
-        throw new UnsupportedOperationException("isWinner is not implemented");
+         return turns == 9;
     } // isFulle
 
     /**
@@ -76,8 +107,15 @@ public class TicTacToeGame {
      * @return {@code true} if the game is a tie and {@code false} otherwise.
      */
     public boolean isCat() {
-        // TODO: implement me. Replace the line below with your implementation of the method.
-        throw new UnsupportedOperationException("isWinner is not implemented");
+         if(isFull() == true)
+        {
+            if(isWinner('X') == false && isWinner('O') == false)
+            {
+                return true;
+            }
+        
+        }
+        return false;
     } // isCat
 
 
